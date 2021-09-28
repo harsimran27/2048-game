@@ -16,7 +16,47 @@ body {
   margin-left: -12.5rem;
   margin-top: -12.5rem;
   display: flex;
-  background-color: rgb(236, 236, 236);
+  background-color: #bbada0;
   flex-wrap: wrap;
   border-radius: 4px;
+  padding: 0.25rem;
+}
+
+.grid-small-squares-box {
+  width: 5.7rem;
+  height: 5.7rem;
+  margin: 0.2rem;
+  background-color: #eee4da;
+  box-shadow: 0 0 30px 10px transparent, inset 0 0 0 1px transparent;
+  text-align: center;
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: #75716d;
+  padding: 1.7rem 0.8rem;
+}
+
+.score-container {
+  position: fixed;
+  background: #bbada0;
+  border-radius: 3px;
+  display: flex;
+  width: 6rem;
+  height: 3.2rem;
+  flex-direction: column;
+  left: 50%;
+  top: 50%;
+  margin-left: 6.5rem;
+  margin-top: -16rem;
+}
+
+.score-title {
+  font-size: 1.2rem;
+  color: #eee4da;
+  text-align: center;
+}
+
+.score {
+  text-align: center;
+  color: whitesmoke;
+  font-size: 1.5rem;
 }
