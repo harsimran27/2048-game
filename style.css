@@ -18,7 +18,7 @@ body {
   display: flex;
   background-color: #bbada0;
   flex-wrap: wrap;
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 0.25rem;
 }
 
@@ -26,13 +26,15 @@ body {
   width: 5.7rem;
   height: 5.7rem;
   margin: 0.2rem;
-  background-color: #eee4da;
+  background-color: #eee4da59;
   box-shadow: 0 0 30px 10px transparent, inset 0 0 0 1px transparent;
   text-align: center;
   font-size: 2.1rem;
   font-weight: bold;
   color: #75716d;
   padding: 1.7rem 0.8rem;
+  border-radius: 4px;
+  letter-spacing: 1px;
 }
 
 .score-container {
