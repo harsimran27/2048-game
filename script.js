@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let width = 4;
     let squares = [];
+    let score = 0;
 
     function createBoard() {
         for (let i = 0; i < width * width; i++) {
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let randomNumbers = Math.floor(Math.random() * squares.length);
         if (squares[randomNumbers].innerHTML == 0) {
             squares[randomNumbers].innerHTML = 2;
+            checkForLose();
         } else {
             generate();
         }
@@ -131,8 +133,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 let combineTotal = parseInt(squares[i].innerHTML) + parseInt(squares[i + 1].innerHTML);
                 squares[i].innerHTML = combineTotal;
                 squares[i + 1].innerHTML = 0;
+                score += combineTotal;
+                scoreDisplay.innerHTML = score;
             }
         }
+        checkForWin();
     }
 
     function combineColumn() {
@@ -141,8 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 let combineTotal = parseInt(squares[i].innerHTML) + parseInt(squares[i + width].innerHTML);
                 squares[i].innerHTML = combineTotal;
                 squares[i + width].innerHTML = 0;
+                score += combineTotal;
+                scoreDisplay.innerHTML = score;
             }
         }
+        checkForWin();
     }
 
     function control(e) {
@@ -186,6 +194,29 @@ document.addEventListener("DOMContentLoaded", () => {
         moveUp();
         generate();
     }
+
+    function checkForWin() {
+        for (let i = 0; i < squares.length; i++) {
+            if (squares[i].innerHTML == 2048) {
+                resultDisplay.innerHTML = "You Win";
+                document.removeEventListener("keyup", control);
+            }
+        }
+    }
+
+    function checkForLose() {
+        let zeroes = 0;
+        for (let i = 0; i < squares.length; i++) {
+            if (squares[i].innerHTML == 0) {
+                zeroes++;
+            }
+        }
+        if (zeroes === 0) {
+            resultDisplay.innerHTML = "You Lose";
+            document.removeEventListener("keyup", control);
+        }
+    }
+
 
 })
 
