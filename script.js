@@ -48,14 +48,71 @@ document.addEventListener("DOMContentLoaded", () => {
                 let newRow = zeroes.concat(filteredRow);
 
                 squares[i].innerHTML = newRow[0];
-                squares[i+1].innerHTML = newRow[1];
-                squares[i+2].innerHTML = newRow[2];
-                squares[i+3].innerHTML = newRow[3];
+                squares[i + 1].innerHTML = newRow[1];
+                squares[i + 2].innerHTML = newRow[2];
+                squares[i + 3].innerHTML = newRow[3];
             }
         }
     }
 
-    moveRight();
+    // move grid to left
+    function moveLeft() {
+        for (let i = 0; i < width * width; i++) {
+            if (i % 4 === 0) {
+                let firstVal = squares[i].innerHTML;
+                let secondVal = squares[i + 1].innerHTML;
+                let thirdVal = squares[i + 2].innerHTML;
+                let fourthVal = squares[i + 3].innerHTML;
+
+                let row = [parseInt(firstVal), parseInt(secondVal), parseInt(thirdVal), parseInt(fourthVal)];
+
+                let filteredRow = row.filter(num => num);
+                let missing = width - filteredRow.length;
+                let zeroes = Array(missing).fill(0);
+                let newRow = filteredRow.concat(zeroes);
+
+                squares[i].innerHTML = newRow[0];
+                squares[i + 1].innerHTML = newRow[1];
+                squares[i + 2].innerHTML = newRow[2];
+                squares[i + 3].innerHTML = newRow[3];
+            }
+        }
+    }
+
+    function combineRow() {
+        for (let i = 0; i < 15; i++) {
+            if (squares[i].innerHTML == squares[i + 1].innerHTML) {
+                let combineTotal = parseInt(squares[i].innerHTML) + parseInt(squares[i + 1].innerHTML);
+                squares[i].innerHTML = combineTotal;
+                squares[i + 1].innerHTML = 0;
+            }
+        }
+    }
+
+    function control(e) {
+        if (e.keyCode === 39) {
+            keyRight();
+        } else if (e.keyCode === 37) {
+            keyLeft();
+        }
+    }
+
+    document.addEventListener("keyup", control);
+
+    function keyRight() {
+        moveRight();
+        combineRow();
+        moveRight();
+        generate();
+    }
+
+    function keyLeft() {
+        moveLeft();
+        combineRow();
+        moveLeft();
+        generate();
+    }
+
 })
 
 // for (let i = 0; i < squares.length; i++) {
