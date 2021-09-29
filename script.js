@@ -6,10 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let width = 4;
     let squares = [];
     let score = 0;
+    let square;
+
 
     function createBoard() {
         for (let i = 0; i < width * width; i++) {
-            let square = document.createElement('div');
+            square = document.createElement('div');
             square.classList.add("grid-small-squares-box");
             square.innerHTML = 0;
             gridDisplay.append(square);
@@ -135,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 squares[i + 1].innerHTML = 0;
                 score += combineTotal;
                 scoreDisplay.innerHTML = score;
+
             }
         }
         checkForWin();
@@ -148,6 +151,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 squares[i + width].innerHTML = 0;
                 score += combineTotal;
                 scoreDisplay.innerHTML = score;
+
+
             }
         }
         checkForWin();
@@ -198,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function checkForWin() {
         for (let i = 0; i < squares.length; i++) {
             if (squares[i].innerHTML == 2048) {
-                resultDisplay.innerHTML = "You Win";
+                resultDisplay.innerHTML = "You Win👍";
                 document.removeEventListener("keyup", control);
             }
         }
@@ -212,76 +217,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         if (zeroes === 0) {
-            resultDisplay.innerHTML = "You Lose";
+            resultDisplay.innerHTML = "You Lose👎";
             document.removeEventListener("keyup", control);
         }
     }
 
 
+
 })
-
-// for (let i = 0; i < squares.length; i++) {
-//     if (squares.innerHTML == 0) {
-//         squares.style.backgroundColor = "#eee4da59";
-//     } else if (squares.innerHTML == 2) {
-//         squares.style.backgroundColor = "#eee4da";
-//     }
-//     else if (squares.innerHTML == 4) {
-//         squares.style.backgroundColor = "#ede0c8";
-//     }
-//     else if (squares.innerHTML == 8) {
-//         squares.style.backgroundColor = "#f2b179";
-//     }
-//     else if (squares.innerHTML == 16) {
-//         squares.style.backgroundColor = "#f59563";
-//     }
-//     else if (squares.innerHTML == 32) {
-//         squares.style.backgroundColor = "#f67c5f";
-//     }
-//     else if (squares.innerHTML == 64) {
-//         squares.style.backgroundColor = "#f65e3b";
-//     }
-//     else if (squares.innerHTML == 128) {
-//         squares.style.backgroundColor = "#edcf72";
-//     }
-//     else if (squares.innerHTML == 256) {
-//         squares.style.backgroundColor = "#edcc61";
-//     }
-//     else if (squares.innerHTML == 512) {
-//         squares.style.backgroundColor = "#edc850";
-//     }
-//     else if (squares.innerHTML == 1024) {
-//         squares.style.backgroundColor = "#edc53f";
-//     }
-//     else if (squares.innerHTML == 2048) {
-//         squares.style.backgroundColor = "#edc22e";
-//     } else {
-//         squares.style.backgroundColor = "#32312d"
-//     }
-// }
-
-// 0 #eee4da59
-
-// 2  #eee4da
-
-// 256 #edcc61
-
-// 4 #ede0c8
-
-// 8 #f2b179
-
-// 16 #f59563
-
-// 32 #f67c5f
-
-// 64 #f65e3b
-
-// 128 #edcf72
-
-//2048 #edc22e
-
-// 1024  #edc53f
-
-// 4096 #32312d
-
-// 512 #edc850

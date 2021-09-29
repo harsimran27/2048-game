@@ -62,3 +62,12 @@ body {
   color: whitesmoke;
   font-size: 1.5rem;
 }
+
+.result {
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: 0.3rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: #494846;
+}
