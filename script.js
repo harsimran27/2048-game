@@ -79,6 +79,52 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function moveDown() {
+        for (let i = 0; i < width; i++) {
+
+            let firstVal = squares[i].innerHTML;
+            let secondVal = squares[i + width].innerHTML;
+            let thirdVal = squares[i + (width * 2)].innerHTML;
+            let fourthVal = squares[i + (width * 3)].innerHTML;
+
+            let column = [parseInt(firstVal), parseInt(secondVal), parseInt(thirdVal), parseInt(fourthVal)];
+
+            let filteredCol = column.filter(num => num);
+            let missing = width - filteredCol.length;
+            let zeroes = Array(missing).fill(0);
+            let newColumn = zeroes.concat(filteredCol);
+
+            squares[i].innerHTML = newColumn[0];
+            squares[i + width].innerHTML = newColumn[1];
+            squares[i + (width * 2)].innerHTML = newColumn[2];
+            squares[i + (width * 3)].innerHTML = newColumn[3];
+
+        }
+    }
+
+    function moveUp() {
+        for (let i = 0; i < width; i++) {
+
+            let firstVal = squares[i].innerHTML;
+            let secondVal = squares[i + width].innerHTML;
+            let thirdVal = squares[i + (width * 2)].innerHTML;
+            let fourthVal = squares[i + (width * 3)].innerHTML;
+
+            let column = [parseInt(firstVal), parseInt(secondVal), parseInt(thirdVal), parseInt(fourthVal)];
+
+            let filteredCol = column.filter(num => num);
+            let missing = width - filteredCol.length;
+            let zeroes = Array(missing).fill(0);
+            let newColumn = filteredCol.concat(zeroes);
+
+            squares[i].innerHTML = newColumn[0];
+            squares[i + width].innerHTML = newColumn[1];
+            squares[i + (width * 2)].innerHTML = newColumn[2];
+            squares[i + (width * 3)].innerHTML = newColumn[3];
+
+        }
+    }
+
     function combineRow() {
         for (let i = 0; i < 15; i++) {
             if (squares[i].innerHTML == squares[i + 1].innerHTML) {
@@ -89,11 +135,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function combineColumn() {
+        for (let i = 0; i < 12; i++) {
+            if (squares[i].innerHTML == squares[i + width].innerHTML) {
+                let combineTotal = parseInt(squares[i].innerHTML) + parseInt(squares[i + width].innerHTML);
+                squares[i].innerHTML = combineTotal;
+                squares[i + width].innerHTML = 0;
+            }
+        }
+    }
+
     function control(e) {
         if (e.keyCode === 39) {
             keyRight();
         } else if (e.keyCode === 37) {
             keyLeft();
+        } else if (e.keyCode === 38) {
+            keyUp();
+        } else if (e.keyCode === 40) {
+            keyDown();
         }
     }
 
@@ -110,6 +170,20 @@ document.addEventListener("DOMContentLoaded", () => {
         moveLeft();
         combineRow();
         moveLeft();
+        generate();
+    }
+
+    function keyDown() {
+        moveDown();
+        combineColumn();
+        moveDown();
+        generate();
+    }
+
+    function keyUp() {
+        moveUp();
+        combineColumn();
+        moveUp();
         generate();
     }
 
